@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool;
 require('dotenv').config()
+const {Client} = require('pg');
 
 // const pass = toString(process.env.pass);
 const pool = new Pool({
