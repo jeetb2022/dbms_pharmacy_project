@@ -32,6 +32,7 @@ app.get('/add/:id',async(req,res)=>{
         ]
         );
         res.json(query.rows);
+        // heyyyyy
 })
 
 
