@@ -6,7 +6,7 @@ CREATE TABLE medicine_details(
     med_quantity INT NOT NULL,
     w_id INT NOT NULL,
     w_shop_address VARCHAR(50) NOT NULL,
-    
-)
+    FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id)
+);
 
 
