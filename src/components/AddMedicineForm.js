@@ -17,9 +17,9 @@ const AddMedicineFrom = (props)=>{
         const quantityChangeHandler = (ele) => {
           setQuantity(ele.target.value);
         };
-        const [phone, setPhone] = useState("");
-        const phoneChangeHandler = (ele) => {
-          setPhone(ele.target.value);
+        const [price, setPrice] = useState("");
+        const priceChangeHandler = (ele) => {
+          setPrice(ele.target.value);
         };
         const [x, setx] = useState("");
         const xChangeHandler = (ele) => {
@@ -49,7 +49,7 @@ const AddMedicineFrom = (props)=>{
             </label >
             <label className="box-inside">
               Price:<br></br>
-              <input type="number" name="phone" value={phone} onChange={phoneChangeHandler} />
+              <input type="number" name="Price" value={price} onChange={priceChangeHandler} />
             </label >
             <br></br>
             <label className="box-inside">

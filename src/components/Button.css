@@ -1,0 +1,8 @@
+.button_medicine{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: aqua;
+}
+.button_medicine:hover{
+    background-color: rgb(167, 234, 255);
+}
