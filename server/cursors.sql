@@ -60,3 +60,5 @@ BEGIN
     CLOSE cur_orders;
 END;
 $$ LANGUAGE plpgsql;
+
+
