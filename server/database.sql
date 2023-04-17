@@ -5,7 +5,7 @@ CREATE TABLE retailer_details (
 	ret_id BIGSERIAL NOT NULL PRIMARY KEY,
 	ret_fname VARCHAR(50) NOT NULL,
 	ret_lname VARCHAR(50) NOT NULL,
-	ret_email VARCHAR(50) NOT NULL,
+	ret_email VARCHAR(50) NOT NULL,      -- Trigger to check if email already exist or not in retailer table
 	ret_password VARCHAR(12) NOT NULL,
 	ret_phone_number VARCHAR(10) NOT NULL,
 	ret_shopname VARCHAR(50) NOT NULL,
@@ -48,14 +48,27 @@ create table wholesaler_details (
 	w_id BIGSERIAL NOT NULL PRIMARY KEY,
 	w_fname VARCHAR(50) NOT NULL,
 	w_lname VARCHAR(50) NOT NULL,
-	w_email VARCHAR(50) NOT NULL,
+	w_email VARCHAR(50) NOT NULL,         -- Trigger to check if email already exist or not in wholesaler table
 	w_password VARCHAR(50) NOT NULL,
 	w_phone_number VARCHAR(50) NOT NULL,
 	w_shopname VARCHAR(50) NOT NULL,
 	w_shop_address VARCHAR(50) NOT NULL,
-	w_rating INT,                -- After every transaction it will be updated (FUNCTION)
-    total_transactions INT       -- AFter every transaction it will be updated (FUNCTION)
+    total_transactions INT       -- After every transaction it will be updated (FUNCTION)
 );
+
+-- update total_transaction of wholesaler
+CREATE FUNCTION w_transactions(IN _w_id INT)
+RETURNS INT as $amount$
+DECLARE total INT
+BEGIN
+    SELECT SUM(net_price) INTO total FROM transactions WHERE w_id = _w_id;
+    UPDATE wholesaler_details SET total_transactions = total
+    WHERE w_id = _w_id;
+    RETURN total;
+END;
+$amount$
+LANGUAGE 'plpgsql';
+
 
 -- Procedure to fill wholesaler details
 CREATE PROCEDURE wholesaler_details_filling(
@@ -299,12 +312,15 @@ DECLARE
     _med_price INT;
     _ret_med_quantity INT;
     _net_price INT;
+    retail_amount INT;
+    w_amount INT;
 BEGIN
     SELECT ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_price, ret_med_quantity, net_price
     INTO _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price
     FROM retailer_cart WHERE item_id = _item_id;
 
-    
+    SELECT ret_transactions(_ret_id) into retail_amount;      -- Function to update ret_transactions
+    SELECT w_transactions(_w_id) into w_amount;               -- Function to update w_transactions
 END;
 $body$;
 
