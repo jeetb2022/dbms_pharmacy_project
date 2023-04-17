@@ -27,11 +27,12 @@ LANGUAGE plpgsql;
 
 
 -- FUNCTION to update cart price
-CREATE FUNCTION total_cart_price()
+CREATE FUNCTION total_cart_price(IN _ret_id INT)
 RETURNS INT as $sum$
 DECLARE total INT;
 BEGIN
-    SELECT SUM(net_price) INTO total FROM retailer_cart;
+    SELECT SUM(net_price) INTO total FROM retailer_cart
+    WHERE ret_id = _ret_id;
     return total;
 END;
 $sum$
