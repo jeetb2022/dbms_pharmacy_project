@@ -8,7 +8,7 @@ const pool = new Pool({
     password : process.env.pass,
     host:"localhost",
     port : 5432,
-    database : "dbms_project"
+    database : "DBByJeet"
 });
 
 module.exports = pool; 

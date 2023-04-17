@@ -24,6 +24,11 @@ app.get('/add',async(req,res)=>{
         res.json(query.rows);
 })
 
+app.post('/addMeds',async(req,res)=>{
+        res.json(req.body);
+        console.log(req.body);
+})
+
 app.get('/add/:id',async(req,res)=>{
     const req_id = req.params.id;
     const query = await client.query(
@@ -32,11 +37,10 @@ app.get('/add/:id',async(req,res)=>{
         ]
         );
         res.json(query.rows);
-        // heyyyyy
-})
+    })
 
 
 
-app.listen((8080),()=>{
+app.listen((5000),()=>{
 console.log("Conned to port 5000");
 });
