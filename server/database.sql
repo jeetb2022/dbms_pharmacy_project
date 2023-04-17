@@ -13,6 +13,18 @@ CREATE TABLE retailer_details (
     ret_transactions INT         -- After every transaction it will be updated (FUNCTION)
 );
 
+CREATE FUNCTION ret_transactions(IN _ret_id INT)
+RETURNS INT as $amount$
+DECLARE total INT
+BEGIN
+    SELECT SUM(net_price) INTO total FROM transactions WHERE ret_id = _ret_id;
+    UPDATE retailer_details SET ret_transactions = total
+    WHERE ret_id = _ret_id;
+    RETURN total;
+END;
+$amount$
+LANGUAGE 'plpgsql';
+
 -- Procedure to fill retailer details
 CREATE PROCEDURE retailer_details_filling(
     IN _ret_fname VARCHAR, 
@@ -256,15 +268,45 @@ $body$;
 -- The procedure will take place after every succesful retailer_cart's transaction
 create table transactions(
     order_id BIGSERIAL NOT NULL PRIMARY KEY,
+    item_id INT NOT NULL,
     ret_id INT NOT NULL,
     ret_shopname VARCHAR(50) NOT NULL,
     w_id INT NOT NULL,
     w_shopname VARCHAR(50) NOT NULL,
-    total_amount INT NOT NULL,
+    med_category VARCHAR(50) NOT NULL,       
+    med_name VARCHAR(50) NOT NULL,          
+    med_id INT NOT NULL, 
+    ret_med_quantity INT NOT NULL,           
+    net_price INT NOT NULL,
     order_date TIMESTAMP,
     FOREIGN KEY (ret_id) REFERENCES retailer_details(ret_id),
-    FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id)
+    FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id),
+    FOREIGN KEY (item_id) REFERENCES retailer_cart(item_id) 
 );
+
+
+-- PROCEDURE to fill the Transactions table
+CREATE PROCEDURE update_transactions(IN _item_id INT)
+LANGUAGE 'p]pgsql'
+AS $body$
+DECLARE 
+    _ret_id VARCHAR;
+    _w_id VARCHAR;
+    _ret_shopname VARCHAR;
+    _w_shopname VARCHAR;
+    _med_category VARCHAR;
+    _med_name VARCHAR;
+    _med_price INT;
+    _ret_med_quantity INT;
+    _net_price INT;
+BEGIN
+    SELECT ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_price, ret_med_quantity, net_price
+    INTO _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price
+    FROM retailer_cart WHERE item_id = _item_id;
+
+    
+END;
+$body$;
 
 -- We will be keeping 2 Functionalties i.e. Retailers_transaction_history and Wholesalers_transaction_history
 -- We will get data about both of these functionalities by joining transactions and retailer_cart.
