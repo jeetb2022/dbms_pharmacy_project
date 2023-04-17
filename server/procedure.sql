@@ -121,6 +121,7 @@ BEGIN
     SELECT ret_shopname INTO _ret_shopname FROM retailer_details WHERE ret_id = _ret_id;
     SELECT med_category, med_name, med_price INTO _med_category, _med_name, _med_price 
     FROM medicine_stock WHERE med_id = _med_id;
+    SELECT total_price_of_med(_ret_med_quantity, _med_price) INTO _total_price;
 
     INSERT INTO retailer_cart(
         ret_id, 
@@ -142,7 +143,7 @@ BEGIN
         _med_name,
         _med_id,
         _ret_med_quantity,
-        _ret_med_quantity*_med_price
+        _total_price
     );
 
     SELECT item_id INTO _item_id FROM retailer_cart WHERE med_id = _med_id;
@@ -154,7 +155,7 @@ $body$;
 
 -- PROCEDURE to fill the Transactions table
 CREATE PROCEDURE update_transactions(IN _item_id INT)
-LANGUAGE 'p]pgsql'
+LANGUAGE 'plpgsql'
 AS $body$
 DECLARE 
     _ret_id VARCHAR;
@@ -163,13 +164,14 @@ DECLARE
     _w_shopname VARCHAR;
     _med_category VARCHAR;
     _med_name VARCHAR;
+    _med_id INT;
     _med_price INT;
     _ret_med_quantity INT;
     _net_price INT;
     retail_amount INT;
     w_amount INT;
 BEGIN
-    SELECT ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_price, ret_med_quantity, net_price
+    SELECT ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_id, ret_med_quantity, net_price
     INTO _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price
     FROM retailer_cart WHERE item_id = _item_id;
 
@@ -177,3 +179,5 @@ BEGIN
     SELECT w_transactions(_w_id) into w_amount;               -- Function to update w_transactions
 END;
 $body$;
+
+
