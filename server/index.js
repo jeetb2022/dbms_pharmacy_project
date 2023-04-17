@@ -32,7 +32,7 @@ app.post('/addMeds',async(req,res)=>{
 app.get('/add/:id',async(req,res)=>{
     const req_id = req.params.id;
     const query = await client.query(
-        "SELECT * FROM person WHERE name=$1",[
+        "SELECT * FROM wholesaler_details WHERE w_fname=$1",[
             req_id
         ]
         );

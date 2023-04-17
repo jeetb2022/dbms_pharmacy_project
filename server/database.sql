@@ -182,11 +182,23 @@ create table retailer_cart(
     med_name VARCHAR(50) NOT NULL,           -- 2nd Trigger
     med_id INT NOT NULL, 
     ret_med_quantity INT NOT NULL,           -- 3rd Trigger
-    cart_price INT NOT NULL,                 -- After every item added to the cart it will be updated(FUNCTION)
+    net_price INT NOT NULL,                 -- After every item added to the cart it will be updated(FUNCTION)
     FOREIGN KEY (ret_id) REFERENCES retailer_details(ret_id),
     FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id),
     FOREIGN KEY (med_id) REFERENCES medicine_stock(med_id)
 );
+
+-- FUNCTION to update cart price
+CREATE FUNCTION total_cart_price()
+RETURNS INT as $sum$
+DECLARE total INT
+BEGIN
+    SELECT SUM(net_price) INTO total FROM retailer_cart;
+    return total;
+END;
+$sum$
+LANGUAGE 'plpgsql';
+
 
 -- PROCEDURE to update retailer cart
 CREATE PROCEDURE cart_update_by_retailer(
@@ -219,7 +231,7 @@ BEGIN
         med_name,
         med_id,
         ret_med_quantity,
-        cart_price
+        net_price
     ) 
     VALUES (
         _ret_id, 
