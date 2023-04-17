@@ -2,8 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import './AddMedicineForm.css'
 const AddMedicineFrom = (props)=>{
-    const handleSubmit =  (event) => {
+    const handleSubmit =  async(event) => {
         event.preventDefault();
+       await axios.post('http://localhost:5000/addMeds',{name,quantity,price,category});
           clickHandler();
       }  
       const clickHandler = () => {
@@ -21,9 +22,9 @@ const AddMedicineFrom = (props)=>{
         const priceChangeHandler = (ele) => {
           setPrice(ele.target.value);
         };
-        const [x, setx] = useState("");
-        const xChangeHandler = (ele) => {
-          setx(ele.target.value);
+        const [category, setCategory] = useState("");
+        const categoryChangeHandler = (ele) => {
+          setCategory(ele.target.value);
         };
     return (
         <div>
@@ -39,7 +40,7 @@ const AddMedicineFrom = (props)=>{
             </label>
             <label className="box-inside">
               Wholesaler Name:<br></br>
-              <input type="text" name="name" value={name} onChange={nameChangeHandler} />
+              <input type="text" name="name" value={category} onChange={categoryChangeHandler} />
             <br></br>
             </label>
             <label className="box-inside">
@@ -51,11 +52,11 @@ const AddMedicineFrom = (props)=>{
               Price:<br></br>
               <input type="number" name="Price" value={price} onChange={priceChangeHandler} />
             </label >
-            <br></br>
+            {/* <br></br>
             <label className="box-inside">
-              x :<br></br>
+              x :<br></br> 
               <input type="text" name="x" value={x} onChange={xChangeHandler} />
-            </label >
+            </label > */}
             <br></br>
              <button style={{ margin: "8px" }} type='submit' >ADD</button> 
           </form>
