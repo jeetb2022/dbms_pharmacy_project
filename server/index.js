@@ -39,8 +39,6 @@ app.get('/add/:id',async(req,res)=>{
         res.json(query.rows);
     })
 
-
-
 app.listen((5000),()=>{
 console.log("Conned to port 5000");
 });
