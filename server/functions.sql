@@ -16,6 +16,7 @@ END;
 $amount$
 LANGUAGE plpgsql;
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 -- FUNCTION to update total_transaction of wholesaler
 -- It will be triggered everytime transactions updates
@@ -34,6 +35,7 @@ END;
 $amount$
 LANGUAGE plpgsql;
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 -- FUNCTION to update cart price
 CREATE FUNCTION total_cart_price(IN _ret_id INT)
@@ -47,6 +49,8 @@ END;
 $sum$
 LANGUAGE plpgsql;
 
+---------------------------------------------------------------------------------------------------------------------------------
+
 -- FUNCTION to calculate total price of medicine
 CREATE FUNCTION total_price_of_med(IN _quantity INT, IN price INT)
 RETURNS INT as $amt$
@@ -56,6 +60,7 @@ END;
 $amt$
 LANGUAGE 'plpgsql';
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 -- Trigger Functions 
 CREATE FUNCTION check_medicine_bounds()
@@ -68,6 +73,6 @@ END;
 $medicine_quantity_trigger$
 LANGUAGE plpgsql;
 
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 

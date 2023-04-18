@@ -1,10 +1,12 @@
-CREATE DATABASE dbms_proj;
+-------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of RETAILER-----------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE retailer_email_id(
     ret_email VARCHAR NOT NULL PRIMARY KEY,
     ret_password VARCHAR NOT NULL
 );
--- Table storing details related Retailer
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------Table storing details related Retailer-------------------------------------------
 CREATE TABLE retailer_details (
 	ret_id BIGSERIAL NOT NULL PRIMARY KEY,
 	ret_fname VARCHAR(50) NOT NULL,
@@ -18,13 +20,18 @@ CREATE TABLE retailer_details (
     ret_number_of_transaction INT,
     FOREIGN KEY (ret_email) REFERENCES retailer_email_id(ret_email)
 );
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of WHOLESALER-----------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE wholesaler_email_id(
     w_email VARCHAR NOT NULL PRIMARY KEY,
     w_password VARCHAR NOT NULL
 );
--- Table storing details related Wholesaler
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------Table storing details related Wholesaler-------------------------------------------
 create table wholesaler_details (
 	w_id BIGSERIAL NOT NULL PRIMARY KEY,
 	w_fname VARCHAR(50) NOT NULL,
@@ -39,6 +46,7 @@ create table wholesaler_details (
     FOREIGN KEY (w_email) REFERENCES wholesaler_email_id(w_email)
 );
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 -- Table in which wholesaler updates his stock 
@@ -59,6 +67,7 @@ create table wholesaler_inventory(
 );
 CREATE unique index idx_wid_medname on wholesaler_inventory(w_id, med_name);
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 -- Table in which every medicine's data will be available.
 -- The data of this table will be directly fetched from the TABLE wholesaler_inventory.
@@ -83,7 +92,7 @@ create table medicine_stock(
 
 CREATE unique index idx_wid_inventoryid on medicine_stock(w_id, inventory_id);
 
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 -- Table in which reatiler will add items he wants to buy 
@@ -107,7 +116,7 @@ create table retailer_cart(
     FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id),
     FOREIGN KEY (med_id) REFERENCES medicine_stock(med_id)
 );
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -133,7 +142,7 @@ create table transactions(
 );
 
 
-
+---------------------------------------------------------------------------------------------------------------------------------
 -- We will be keeping 2 Functionalties i.e. Retailers_transaction_history and Wholesalers_transaction_history
 -- We will get data about both of these functionalities by joining transactions and retailer_cart.
 

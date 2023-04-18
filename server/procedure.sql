@@ -16,6 +16,8 @@ BEGIN
 END;
 $body$;
 -- CALL retailer_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+---------------------------------------------------------------------------------------------------------------------------------
+
 
 -- Procedure to fill wholesaler details
 CREATE PROCEDURE wholesaler_details_filling(
@@ -35,6 +37,7 @@ BEGIN
 END;
 $body$;
 -- CALL wholesaler_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+---------------------------------------------------------------------------------------------------------------------------------
 
 -- Procedure to update wholesaler's inventory
 CREATE PROCEDURE inventory_updates(
@@ -61,6 +64,8 @@ BEGIN
 END;
 $body$;
 -- CALL inventory_updates(1, 'Pain-killer', 'Dolo-650', 200, 5000);
+---------------------------------------------------------------------------------------------------------------------------------
+
 
 -- PROCEDURE to update medicine stock from wholesaler side
 CREATE PROCEDURE stock_update_by_wholesaler(IN _w_id INT, IN _inventory_id INT)
@@ -83,6 +88,8 @@ BEGIN
     ON CONFLICT (w_id, inventory_id) DO UPDATE SET med_price = _med_price, med_quantity = _med_quantity;
 END;
 $body$;
+---------------------------------------------------------------------------------------------------------------------------------
+
 
 
 -- PROCEDURE to update medicine stock from retailer side
@@ -98,6 +105,7 @@ BEGIN
     WHERE med_id = _med_id;
 END;
 $body$;
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 -- PROCEDURE to update retailer cart
@@ -151,6 +159,8 @@ BEGIN
 END;
 $body$;
 -- CALL cart_update_by_retailer(1, 1, 2000);
+---------------------------------------------------------------------------------------------------------------------------------
+
 
 
 -- PROCEDURE to fill the Transactions table
@@ -177,5 +187,5 @@ BEGIN
 
 END;
 $body$;
-
+---------------------------------------------------------------------------------------------------------------------------------
 
