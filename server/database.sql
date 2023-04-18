@@ -1,20 +1,29 @@
 CREATE DATABASE dbms_proj;
 
+CREATE TABLE retailer_email_id(
+    ret_email VARCHAR NOT NULL PRIMARY KEY,
+    ret_password VARCHAR NOT NULL
+);
 -- Table storing details related Retailer
 CREATE TABLE retailer_details (
 	ret_id BIGSERIAL NOT NULL PRIMARY KEY,
 	ret_fname VARCHAR(50) NOT NULL,
 	ret_lname VARCHAR(50) NOT NULL,
-	ret_email VARCHAR(50) NOT NULL,      -- Trigger to check if email already exist or not in retailer table
+	ret_email VARCHAR NOT NULL,      -- Trigger to check if email already exist or not in retailer table
 	ret_password VARCHAR(12) NOT NULL,
 	ret_phone_number VARCHAR(10) NOT NULL,
 	ret_shopname VARCHAR(50) NOT NULL,
 	ret_shop_address VARCHAR(200) NOT NULL,
-    ret_transactions INT         -- After every transaction it will be updated (FUNCTION)
+    ret_transactions INT,         -- After every transaction it will be updated (FUNCTION)
+    ret_number_of_transaction INT,
+    FOREIGN KEY (ret_email) REFERENCES retailer_email_id(ret_email)
 );
 
 
-
+CREATE TABLE wholesaler_email_id(
+    w_email VARCHAR NOT NULL PRIMARY KEY,
+    w_password VARCHAR NOT NULL
+);
 -- Table storing details related Wholesaler
 create table wholesaler_details (
 	w_id BIGSERIAL NOT NULL PRIMARY KEY,
@@ -25,8 +34,11 @@ create table wholesaler_details (
 	w_phone_number VARCHAR(50) NOT NULL,
 	w_shopname VARCHAR(50) NOT NULL,
 	w_shop_address VARCHAR(50) NOT NULL,
-    total_transactions INT       -- After every transaction it will be updated (FUNCTION)
+    total_transactions INT,      -- After every transaction it will be updated (FUNCTION)
+    w_number_of_transactions INT,
+    FOREIGN KEY (w_email) REFERENCES wholesaler_email_id(w_email)
 );
+
 
 
 -- Table in which wholesaler updates his stock 
@@ -86,10 +98,10 @@ create table retailer_cart(
     w_id INT NOT NULL,
     ret_shopname VARCHAR(50) NOT NULL,
     w_shopname VARCHAR(50) NOT NULL,
-    med_category VARCHAR(50) NOT NULL,       -- 1st Trigger
-    med_name VARCHAR(50) NOT NULL,           -- 2nd Trigger
+    med_category VARCHAR(50) NOT NULL,       
+    med_name VARCHAR(50) NOT NULL,           
     med_id INT NOT NULL, 
-    ret_med_quantity INT NOT NULL,           -- 3rd Trigger
+    ret_med_quantity INT NOT NULL,           
     net_price INT NOT NULL,                 -- After every item added to the cart it will be updated(FUNCTION)
     FOREIGN KEY (ret_id) REFERENCES retailer_details(ret_id),
     FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id),

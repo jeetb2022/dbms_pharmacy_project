@@ -30,7 +30,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
--- FUNCTION with CURSOR to get wholesaler's detail
+-- FUNCTION with CURSOR to get wholesaler's transaction history
 CREATE FUNCTION get_wholesaler_orders(_w_id INTEGER) 
 RETURNS TABLE (
     order_id INT, item_id INT, ret_id INT, ret_shopname VARCHAR, med_category VARCHAR, med_name VARCHAR, 
