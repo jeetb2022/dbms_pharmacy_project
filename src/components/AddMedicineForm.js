@@ -39,7 +39,7 @@ const AddMedicineFrom = (props)=>{
             <br></br>
             </label>
             <label className="box-inside">
-              Wholesaler Name:<br></br>
+             Medicine category:<br></br>
               <input type="text" name="name" value={category} onChange={categoryChangeHandler} />
             <br></br>
             </label>

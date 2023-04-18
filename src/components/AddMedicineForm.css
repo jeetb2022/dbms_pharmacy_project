@@ -7,6 +7,7 @@
     z-index: 10;
     background: rgba(0, 0, 0, 0.75);
 }
+
 .box{
     background-color: #61e6dd;
     width: 25%;
@@ -17,7 +18,6 @@
     left: 38%;
     z-index: 100;
     transition-duration: 10ms;
-
 }
 .box-inside{
     padding: 4px;

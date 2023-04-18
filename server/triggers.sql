@@ -86,7 +86,6 @@ BEGIN
     SELECT COUNT(*) INTO num_trans FROM transactions WHERE ret_id = NEW.ret_id;
     UPDATE retailer_details SET ret_transactions = total, ret_number_of_transaction = num_trans
     WHERE ret_id = _ret_id;
-
     RETURN total;
 END;
 $amount$

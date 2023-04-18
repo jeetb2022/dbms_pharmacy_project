@@ -27,6 +27,7 @@ app.get('/add',async(req,res)=>{
 app.post('/addMeds',async(req,res)=>{
         res.json(req.body);
         console.log(req.body);
+        
 })
 
 app.get('/add/:id',async(req,res)=>{
