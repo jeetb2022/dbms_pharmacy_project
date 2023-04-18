@@ -175,8 +175,6 @@ BEGIN
     INTO _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price
     FROM retailer_cart WHERE item_id = _item_id;
 
-    SELECT ret_transactions(_ret_id) into retail_amount;      -- Function to update ret_transactions
-    SELECT w_transactions(_w_id) into w_amount;               -- Function to update w_transactions
 END;
 $body$;
 
