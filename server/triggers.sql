@@ -1,4 +1,4 @@
-
+-- TRIGGERS THAT WILL FIRE AT FRONTEND
 ------------------------------------------TRIGGER DURING RETAILER SIGN UP WITH EXISTING ACCOUNT---------------------------------------------------
 
 CREATE FUNCTION retailer_email_exists()
@@ -51,6 +51,9 @@ BEFORE INSERT OR UPDATE ON wholesaler_inventory
     FOR EACH ROW EXECUTE FUNCTION quantity_check();
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+--TRIGGERS THAT WILL ONLY UPDATE THE STOCK AND WON'T THROW ANY EXCEPTION
 ------------------------------------------TRIGGER TO UPDATE WHOLESALER NUMBER OF TRANSACTION---------------------------------------------------
 -- FUNCTION to update total_transaction of wholesaler
 -- It will be triggered everytime transactions updates
