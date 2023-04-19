@@ -1,0 +1,44 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color:#61e6dd;
+    font-family: 'Arial';
+}
+.login{
+        width: 382px;
+        
+        margin: auto;
+        margin: 20 0 0 450px;
+        padding: 80px;
+        background: #61e6dd;
+       
+
+}
+h2{
+    text-align: center;
+   
+    padding: 20px;
+}
+label{
+    
+    font-size: 17px;
+}
+#Pass{
+    width: 300px;
+    height: 30px;
+    
+    border-radius: 3px;
+    padding-left: 8px;
+
+}
+#Uname{
+    width: 400px;
+    height: 30px;
+   
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+
+
