@@ -5,7 +5,7 @@ CREATE TABLE retailer_email_id(
     ret_password VARCHAR NOT NULL
 );
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+--
 -------------------------------------------Table storing details related Retailer-------------------------------------------
 CREATE TABLE retailer_details (
 	ret_id BIGSERIAL NOT NULL PRIMARY KEY,
