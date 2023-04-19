@@ -1,7 +1,7 @@
 -------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of RETAILER-----------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE retailer_email_id(
-    ret_email VARCHAR NOT NULL PRIMARY KEY,
+    ret_email VARCHAR NOT NULL,
     ret_password VARCHAR NOT NULL
 );
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -18,14 +18,13 @@ CREATE TABLE retailer_details (
 	ret_shop_address VARCHAR(200) NOT NULL,
     ret_transactions INT,         -- After every transaction it will be updated (FUNCTION)
     ret_number_of_transaction INT,
-    FOREIGN KEY (ret_email) REFERENCES retailer_email_id(ret_email)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of WHOLESALER-----------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE wholesaler_email_id(
-    w_email VARCHAR NOT NULL PRIMARY KEY,
+    w_email VARCHAR NOT NULL,
     w_password VARCHAR NOT NULL
 );
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,7 +42,6 @@ create table wholesaler_details (
 	w_shop_address VARCHAR(50) NOT NULL,
     total_transactions INT,      -- After every transaction it will be updated (FUNCTION)
     w_number_of_transactions INT,
-    FOREIGN KEY (w_email) REFERENCES wholesaler_email_id(w_email)
 );
 
 ---------------------------------------------------------------------------------------------------------------------------------
