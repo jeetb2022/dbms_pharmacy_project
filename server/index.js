@@ -29,6 +29,11 @@ app.post('/addMeds',async(req,res)=>{
         console.log(req.body);
         
 })
+app.post('/retailInfo',async(req,res)=>{
+        res.json(req.body);
+        console.log(req.body);
+
+})
 
 app.get('/add/:id',async(req,res)=>{
     const req_id = req.params.id;

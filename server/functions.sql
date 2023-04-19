@@ -63,15 +63,7 @@ LANGUAGE 'plpgsql';
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
--- Trigger Functions 
-CREATE FUNCTION check_medicine_bounds()
-RETURNS TRIGGER AS $medicine_quantity_trigger$
-BEGIN
-    if NEW.med_quantity <2000 then 
-        RAISE ERROR 
-END;
-$medicine_quantity_trigger$
-LANGUAGE plpgsql;
+
 
 ---------------------------------------------------------------------------------------------------------------------------------
 

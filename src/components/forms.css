@@ -1,13 +1,16 @@
-body
+.body
 {
     margin: 0;
+    height: 100vh;
     padding: 0;
     background-color:#61e6dd;
     font-family: 'Arial';
 }
 .login{
-        width: 382px;
-        
+        width: 382px;   
+        position: absolute;
+        top: 15vh;
+        left: 31%;
         margin: auto;
         margin: 20 0 0 450px;
         padding: 80px;
@@ -23,19 +26,20 @@ h2{
 label{
     
     font-size: 17px;
+    /* padding: px; */
 }
 #Pass{
     width: 300px;
+    padding: 3px;
     height: 30px;
-    
     border-radius: 3px;
     padding-left: 8px;
 
 }
 #Uname{
-    width: 400px;
+    width: 300px;
     height: 30px;
-   
+    padding: 3px;
     border-radius: 3px;
     padding-left: 8px;
 }
