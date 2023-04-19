@@ -6,13 +6,7 @@ const RetailerInfoForm = () => {
     
     const submitHandler = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:5000/retailInfo',{
-            f_name : fname,
-            l_name : lname,
-            shopname : shopname,
-            shopaddress : shopaddress,
-            phone : phone
-        });
+        axios.post('http://localhost:5000/retailInfo',[ fname, lname,shopname,shopaddress, phone]);
     }
     const [fname,setFname]= useState('');
     const fnameChangeHandler = (ele) => {
