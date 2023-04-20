@@ -3,7 +3,7 @@
     top: 30vh;
     
 }
-.login{
+.login_d{
     position: relative;
     top: 50vh;
     background-color: white;
@@ -27,6 +27,13 @@ left: 40vh;
     right: 30vh;
     bottom: 20vh;
     
+}
+
+.retailerp{
+    position: relative;
+    left: 40vh;
+    /* bottom: 10vh; */
+    top: 27vh;
 }
 
 .retailerp{
