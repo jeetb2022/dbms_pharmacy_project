@@ -1,36 +1,37 @@
 -- TRIGGERS THAT WILL FIRE AT FRONTEND
 ------------------------------------------TRIGGER DURING RETAILER SIGN UP WITH EXISTING ACCOUNT---------------------------------------------------
 
-CREATE FUNCTION retailer_email_exists()
+CREATE OR REPLACE FUNCTION _retailer_email_exists()
 RETURNS TRIGGER AS $$
 BEGIN 
-    IF NEW.ret_email = OLD.ret_email THEN
-        RAISE EXCEPTION 'Retailer account form the email-id already exists';
+    IF EXISTS (SELECT 1 FROM retailer_email_id WHERE ret_email = NEW.ret_email) THEN
+        RAISE EXCEPTION 'Retailer account for the email already exists';
     END IF;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER enforce_ret_email_check
+CREATE OR REPLACE TRIGGER _enforce_ret_email_check
 BEFORE INSERT ON retailer_email_id
-    FOR EACH ROW EXECUTE FUNCTION retailer_email_exists();
+FOR EACH ROW EXECUTE FUNCTION _retailer_email_exists();
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------TRIGGER DURING WHOLESALER SIGN UP WITH EXISTING ACCOUNT---------------------------------------------------
 
-CREATE FUNCTION wholesaler_email_exists()
+CREATE OR REPLACE FUNCTION _wholesaler_email_exists()
 RETURNS TRIGGER AS $$
 BEGIN 
-    IF NEW.w_email = OLD.w_email THEN
+    IF EXISTS (SELECT 1 FROM wholesaler_email_id WHERE w_email = NEW.w_email) THEN
         RAISE EXCEPTION 'Wholesaler account form the email-id already exists';
     END IF;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER enforce_w_email_check
+CREATE TRIGGER _enforce_w_email_check
 BEFORE INSERT ON wholesaler_email_id
-    FOR EACH ROW EXECUTE FUNCTION wholesaler_email_exists();
+    FOR EACH ROW EXECUTE FUNCTION _wholesaler_email_exists();
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

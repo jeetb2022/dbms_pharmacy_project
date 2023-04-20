@@ -1,3 +1,22 @@
+
+--Function to check if email exists or not in the database during login for retailer
+CREATE FUNCTION check_retailer_login_credentials(IN _email VARCHAR, IN _password VARCHAR)
+RETURNS boolean
+AS $$
+BEGIN
+    RETURN EXISTS (SELECT 1 FROM retailer_email_id WHERE ret_email = _email AND ret_password = _password);
+END;
+$$ LANGUAGE plpgsql;
+
+--Function to check if email exists or not in the database during login for wholesaler
+CREATE FUNCTION check_wholesaler_login_credentials(IN _email VARCHAR, IN _password VARCHAR)
+RETURNS boolean
+AS $$
+BEGIN
+    RETURN EXISTS (SELECT 1 FROM wholesaler_email_id WHERE w_email = _email AND w_password = _password);
+END;
+$$ LANGUAGE plpgsql;
+
 -- Function to update ret_net_transactions
 -- It will be triggered everytime transactions updates
 CREATE FUNCTION ret_transactions()
