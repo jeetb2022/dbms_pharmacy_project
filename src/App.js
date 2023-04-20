@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import RetailerInfoForm from './components/RetailerInfoForm';
 import Retailer from './components/Retailer';
+import retimg from './components/images/photor.png'
 import RetailerPage from './components/RetailerPage';
 import './components/dhanashri.css'
 const  App = ()=> {
@@ -25,10 +26,17 @@ const  App = ()=> {
      <h3>By Jeet Bhadaniya, Het Prajapati, Kushal Patel, Dhanashri Wala</h3>
      <Button onclick={handleClick} content = "Add Medicines"></Button> */}
      {formIsVisible && <AddMedicineFrom onCancel={handleClick} />}
-     {!RetailerFormIsVisible &&<div className='retailer'> <Button onclick={handleRetailer} content = "Retailer"/></div>}
+     {!RetailerFormIsVisible &&<div>
+      <div className='retimg'>
+<img src={retimg} alt='logo'></img>
+</div>
+      <div className='retailer'> <Button onclick={handleRetailer} content = "Retailer"/></div>
+     </div> }
      {!RetailerFormIsVisible && <div className='wholesaler'> <Button onclick={handleClick} content = "Wholesaler"/></div>}
      {RetailerFormIsVisible && <RetailerPage />}
+     
     </div>
+   
   );
 }
 
