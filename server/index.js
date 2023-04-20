@@ -71,6 +71,23 @@ app.post('/checksignup',async(req,res)=>{
         console.log(error);
     }
 })
+app.post('/checklogin',async(req,res)=>{
+    console.log(req.body.email);
+    console.log(req.body.password);
+    // try {
+        const query = await client.query(
+            "SELECT check_retailer_login_credentials($1,$2)",[
+                req.body.email,req.body.password
+            ]
+            );
+            console.log(query.rows[0].check_retailer_login_credentials);
+            if(query.rows[0].check_retailer_login_credentials === true){
+                res.json(req.body);
+            }
+            else{
+                res.status(404).json('errror mf');
+            }
+})
 
 app.listen((5000),()=>{
 console.log("Conned to port 5000");

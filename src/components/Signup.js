@@ -35,7 +35,9 @@ return (
             <h2>Signup Page</h2>
             <form id="login" method="post" onSubmit={submitHandler}>
                 <label><b>Email:
+
                 </b>
+                <br></br>
                 </label>
                 <input type="email" name="Uname" id="Uname" placeholder="Email" onChange={emailchangeHandler} />
                 <br></br>
@@ -52,7 +54,7 @@ return (
                 <button style={{ margin: "8px" }} type='submit' >SignUp</button>                        <br></br>
             </form>
         </div>
-        {error && <div style={{padding:'10px'}}>Retailer account form the email-id already exists</div>}
+        {error && <div style={{padding:'10px', color:'red',fontSize:'20px'}}>Wholesaler account form the email-id already exists</div>}
     </div>
 );
 

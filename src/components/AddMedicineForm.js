@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import './AddMedicineForm.css'
 const AddMedicineFrom = (props)=>{
@@ -26,11 +26,21 @@ const AddMedicineFrom = (props)=>{
         const categoryChangeHandler = (ele) => {
           setCategory(ele.target.value);
         };
+        const [error,setError] = useState(false);
+        useEffect(()=>{
+          if(quantity<2000){
+            setError(true);
+          }
+          else {
+            setError(false);
+          }
+        })
     return (
         <div>
         <div className="backdrop" onClick={clickHandler}>
         </div>
         <div className="box">
+        {error && <div style={{padding:'10px', color:'red',fontSize:'20px'}}>med quantity should be greater than equal to 2000</div>}
           <h1>Add Medicine</h1>
           <form onSubmit={handleSubmit}>
             <label className="box-inside">
