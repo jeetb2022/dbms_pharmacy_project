@@ -58,7 +58,7 @@ BEFORE INSERT OR UPDATE ON wholesaler_inventory
 ------------------------------------------TRIGGER TO UPDATE WHOLESALER NUMBER OF TRANSACTION---------------------------------------------------
 -- FUNCTION to update total_transaction of wholesaler
 -- It will be triggered everytime transactions updates
-CREATE FUNCTION w_transactions()
+CREATE OR REPLACE FUNCTION w_transactions()
 RETURNS TRIGGER as $amount$
 DECLARE 
     total INT;
@@ -67,20 +67,20 @@ BEGIN
     SELECT SUM(net_price) INTO total FROM transactions WHERE w_id = NEW.w_id;
     SELECT COUNT(*) INTO num_trans FROM transactions WHERE w_id = NEW.w_id;
     UPDATE wholesaler_details SET total_transactions = total, w_number_of_transactions = num_trans
-    WHERE w_id = _w_id;
-    RETURN total;
+    WHERE w_id = NEW.w_id;
+    RETURN NEW;
 END;
 $amount$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER _w_num_of_transactions
+CREATE OR REPLACE TRIGGER _w_num_of_transactions
 AFTER INSERT OR UPDATE ON transactions
     FOR EACH ROW EXECUTE FUNCTION w_transactions();
 
 ------------------------------------------TRIGGER TO UPDATE RETAILER NUMBER OF TRANSACTIONS---------------------------------------------------
 -- Function to update ret_net_transactions
 -- It will be triggered everytime transactions updates
-CREATE FUNCTION ret_transactions()
+CREATE OR REPLACE FUNCTION ret_transactions()
 RETURNS TRIGGER as $amount$
 DECLARE 
     total INT;
@@ -89,13 +89,13 @@ BEGIN
     SELECT SUM(net_price) INTO total FROM transactions WHERE ret_id = NEW.ret_id;
     SELECT COUNT(*) INTO num_trans FROM transactions WHERE ret_id = NEW.ret_id;
     UPDATE retailer_details SET ret_transactions = total, ret_number_of_transaction = num_trans
-    WHERE ret_id = _ret_id;
-    RETURN total;
+    WHERE ret_id = NEW.ret_id;
+    RETURN NEW;
 END;
 $amount$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER _ret_num_of_transactions
+CREATE OR REPLACE TRIGGER _ret_num_of_transactions
 AFTER INSERT OR UPDATE ON transactions
     FOR EACH ROW EXECUTE FUNCTION ret_transactions();
 

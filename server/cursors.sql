@@ -1,5 +1,5 @@
 -- Function with a CURSOR to get Retailer's History
-CREATE FUNCTION get_retailer_orders(_ret_id INTEGER) 
+CREATE OR REPLACE FUNCTION get_retailer_orders(_ret_id INTEGER) 
 RETURNS TABLE (
     order_id INT, item_id INT, w_id INT, w_shopname VARCHAR, med_category VARCHAR, med_name VARCHAR, 
     med_id INT, ret_med_quantity INT, net_price INT, order_date TIMESTAMP
@@ -35,7 +35,7 @@ $$ LANGUAGE plpgsql;
 
 
 -- FUNCTION with CURSOR to get wholesaler's transaction history
-CREATE FUNCTION get_wholesaler_orders(_w_id INTEGER) 
+CREATE OR REPLACE FUNCTION get_wholesaler_orders(_w_id INTEGER) 
 RETURNS TABLE (
     order_id INT, item_id INT, ret_id INT, ret_shopname VARCHAR, med_category VARCHAR, med_name VARCHAR, 
     med_id INT, ret_med_quantity INT, net_price INT, order_date TIMESTAMP

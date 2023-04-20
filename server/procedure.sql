@@ -68,7 +68,7 @@ $body$;
 
 
 -- PROCEDURE to update medicine stock from wholesaler side
-CREATE PROCEDURE stock_update_by_wholesaler(IN _w_id INT, IN _inventory_id INT)
+CREATE OR REPLACE PROCEDURE stock_update_by_wholesaler(IN _w_id INT, IN _inventory_id INT)
 LANGUAGE 'plpgsql'
 AS $body$
 DECLARE 
@@ -184,7 +184,8 @@ BEGIN
     SELECT ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_id, ret_med_quantity, net_price
     INTO _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price
     FROM retailer_cart WHERE item_id = _item_id;
-
+    INSERT INTO transactions(item_id, ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_id, ret_med_quantity, net_price)
+    VALUES(_item_id, _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price);
 END;
 $body$;
 ---------------------------------------------------------------------------------------------------------------------------------

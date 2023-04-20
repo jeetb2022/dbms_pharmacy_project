@@ -4,6 +4,11 @@ CREATE TABLE retailer_email_id(
     ret_email VARCHAR NOT NULL,
     ret_password VARCHAR NOT NULL
 );
+
+INSERT INTO retailer_email_id(ret_email, ret_password) VALUES('kushal47@gmail.com', '12345678');
+INSERT INTO retailer_email_id(ret_email, ret_password) VALUES('jeet69@gmail.com', '12349876');
+INSERT INTO retailer_email_id(ret_email, ret_password) VALUES('het59@gmail.com', '54321987');
+INSERT INTO retailer_email_id(ret_email, ret_password) VALUES('dhanashri37@gmail.com', '81234765');
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --
 -------------------------------------------Table storing details related Retailer-------------------------------------------
@@ -20,6 +25,15 @@ CREATE TABLE retailer_details (
     ret_number_of_transaction INT,
     FOREIGN KEY (ret_email) REFERENCES FROM retailer_email_id(ret_email)
 );
+
+INSERT INTO retailer_details(ret_fname, ret_lname, ret_email, ret_password, ret_phone_number, ret_shopname, ret_shop_address, ret_transactions, ret_number_of_transaction)
+VALUES('Kushal', 'Patel', 'kushal47@gmail.com', '12345678', '9922883344', 'Natraj Pharmacy', 'Maninagar', 0, 0);
+INSERT INTO retailer_details(ret_fname, ret_lname, ret_email, ret_password, ret_phone_number, ret_shopname, ret_shop_address, ret_transactions, ret_number_of_transaction)
+VALUES('Jeet', 'Patel', 'jeet69@gmail.com', '12349876', '3399228844', 'Krishna Pharmacy', 'CG Road', 0, 0);
+INSERT INTO retailer_details(ret_fname, ret_lname, ret_email, ret_password, ret_phone_number, ret_shopname, ret_shop_address, ret_transactions, ret_number_of_transaction)
+VALUES('Het', 'Prajapati', 'het59@gmail.com', '54321987', '2299883344', 'Rajput Pharmacy', 'Bopal', 0, 0);
+INSERT INTO retailer_details(ret_fname, ret_lname, ret_email, ret_password, ret_phone_number, ret_shopname, ret_shop_address, ret_transactions, ret_number_of_transaction)
+VALUES('Dhanashri', 'Wala', 'dhanashri37@gmail.com', '81234765', '3349228144', 'Krishna Pharmacy', 'CTM', 0, 0);
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of WHOLESALER-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,6 +42,10 @@ CREATE OR REPLACE TABLE wholesaler_email_id(
     w_email VARCHAR NOT NULL,
     w_password VARCHAR NOT NULL
 );
+INSERT INTO wholesaler_email_id(w_email, w_password) VALUES('zenil47@gmail.com', '12345678');
+INSERT INTO wholesaler_email_id(w_email, w_password) VALUES('neel69@gmail.com', '12349876');
+INSERT INTO wholesaler_email_id(w_email, w_password) VALUES('malhar59@gmail.com', '54321987');
+INSERT INTO wholesaler_email_id(w_email, w_password) VALUES('vanditi37@gmail.com', '81234765');
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -43,8 +61,16 @@ create OR REPLACE table wholesaler_details (
 	w_shop_address VARCHAR(50) NOT NULL,
     total_transactions INT,      -- After every transaction it will be updated (FUNCTION)
     w_number_of_transactions INT,
-    FOREIGN KEY (w_email) REFERENCES FROM wholesaler_email_id(w_email)
+    -- FOREIGN KEY (w_email) REFERENCES FROM wholesaler_email_id(w_email)
 );
+INSERT INTO wholesaler_details(w_fname, w_lname, w_email, w_password, w_phone_number, w_shopname, w_shop_address, total_transactions, w_number_of_transactions)
+VALUES('Zenil', 'Sanghvi', 'zenil47@gmail.com', '12345678', '9922883344', 'Ram Suppliers', 'Maninagar', 0, 0);
+INSERT INTO wholesaler_details(w_fname, w_lname, w_email, w_password, w_phone_number, w_shopname, w_shop_address, total_transactions, w_number_of_transactions)
+VALUES('Neel', 'Sheth', 'neel69@gmail.com', '12349876', '3399228844', 'Krishna Medical Center', 'CG Road', 0, 0);
+INSERT INTO wholesaler_details(w_fname, w_lname, w_email, w_password, w_phone_number, w_shopname, w_shop_address, total_transactions, w_number_of_transactions)
+VALUES('Malhar', 'Patel', 'malhar59@gmail.com', '54321987', '2299883344', 'Rajput Drug Center', 'Bopal', 0, 0);
+INSERT INTO wholesaler_details(w_fname, w_lname, w_email, w_password, w_phone_number, w_shopname, w_shop_address, total_transactions, w_number_of_transactions)
+VALUES('Vandit', 'Shah', 'vandit37@gmail.com', '81234765', '3349228144', 'Krishna Suppliers', 'CTM', 0, 0);
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -66,7 +92,10 @@ create table wholesaler_inventory(
     PRIMARY KEY (inventory_id)
 );
 CREATE unique index idx_wid_medname on wholesaler_inventory(w_id, med_name);
-
+INSERT INTO wholesaler_inventory(w_id, w_shopname, med_category, med_name, med_price, med_quantity)
+VALUES(1, 'Ram Suppliers', 'Pain-Killer', 'DOLO-650', 200, 5000);
+INSERT INTO wholesaler_inventory(w_id, w_shopname, med_category, med_name, med_price, med_quantity)
+VALUES(4, 'Krishna Suppliers', 'Pain-Killer', 'COMBIFLAM', 300, 6000);
 ---------------------------------------------------------------------------------------------------------------------------------
 
 -- Table in which every medicine's data will be available.
