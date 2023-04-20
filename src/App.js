@@ -5,10 +5,17 @@ import Button from './components/Button';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import RetailerInfoForm from './components/RetailerInfoForm';
+import Retailer from './components/Retailer';
+import RetailerPage from './components/RetailerPage';
 const  App = ()=> {
   const [formIsVisible, setFormVisibitlity] = useState(true);
+  const [RetailerFormIsVisible, setRetailerFormIsVisible] = useState(false);
+
   const handleClick = () => {
     setFormVisibitlity(!formIsVisible);
+  }
+  const handleRetailer = () => {
+    setRetailerFormIsVisible(!RetailerFormIsVisible);
   }
   return (
     <div className="App">
@@ -17,7 +24,9 @@ const  App = ()=> {
      <h3>By Jeet Bhadaniya, Het Prajapati, Kushal Patel, Dhanashri Wala</h3>
      <Button onclick={handleClick} content = "Add Medicines"></Button> */}
      {formIsVisible && <AddMedicineFrom onCancel={handleClick} />}
-     <RetailerInfoForm />
+     {!RetailerFormIsVisible &&<Button onclick={handleRetailer} content = "Retailer"/>}
+     {!RetailerFormIsVisible &&  <Button onclick={handleClick} content = "Wholesaler"/>}
+     {RetailerFormIsVisible && <RetailerPage />}
     </div>
   );
 }

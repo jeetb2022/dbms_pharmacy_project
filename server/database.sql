@@ -17,7 +17,7 @@ CREATE TABLE retailer_details (
 	ret_shopname VARCHAR(50) NOT NULL,
 	ret_shop_address VARCHAR(200) NOT NULL,
     ret_transactions INT,         -- After every transaction it will be updated (FUNCTION)
-    ret_number_of_transaction INT,
+    ret_number_of_transaction INT
 );
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ create table wholesaler_details (
 	w_shopname VARCHAR(50) NOT NULL,
 	w_shop_address VARCHAR(50) NOT NULL,
     total_transactions INT,      -- After every transaction it will be updated (FUNCTION)
-    w_number_of_transactions INT,
+    w_number_of_transactions INT
 );
 
 ---------------------------------------------------------------------------------------------------------------------------------
