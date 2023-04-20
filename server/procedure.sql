@@ -18,6 +18,7 @@ $body$;
 
 CALL retailer_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -66,6 +67,16 @@ BEGIN
 END;
 $body$;
 CALL inventory_updates(1, 'Pain-killer', 'Dolo-650', 200, 5000);
+CALL inventory_updates(2,'Fever', 'Advil',500,5500);
+CALL inventory_updates(3,'Headache','Disprin',250,4000);
+CALL inventory_updates(4, 'Cough and Cold', 'Crocin', 370, 2500);
+CALL inventory_updates(5, 'fatigue', 'vivarin', 400,1200);
+CALL inventory_updates(6,'vomit','enterogermina',375,6000);
+CALL inventory_updates(7,'diarrhea', 'vitalz',600,5500);
+CALL inventory_updates(8,'thyroid','levo-t', 475,4000);
+CALL inventory_updates(9,'Fever','Dolo-550', 700,1100);
+CALL inventory_updates(10, 'Headache', 'aspirin', 300,8050);
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -91,6 +102,13 @@ BEGIN
 END;
 $body$;
 CALL stock_update_by_wholesaler(2, 1);
+CALL stock_update_by_wholesaler(4,7);
+CALL stock_update_by_wholesaler(6,5);
+CALL stock_update_by_wholesaler(1,4);
+CALL stock_update_by_wholesaler(8,3);
+CALL stock_update_by_wholesaler(5,5);
+CALL stock_update_by_wholesaler(9,2);
+CALL stock_update_by_wholesaler(10,8);
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -163,6 +181,12 @@ BEGIN
 END;
 $body$;
 CALL cart_update_by_retailer(1, 1, 2000);
+CALL cart_update_by_retailer(2,4,1768);
+CALL cart_update_by_retailer(3,6,1500);
+CALL cart_update_by_retailer(6,7,1200);
+CALL cart_update_by_retailer(7,5,600);
+CALL cart_update_by_retailer(8,2,100);
+CALL cart_update_by_retailer(4,3,450);
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -194,5 +218,10 @@ BEGIN
 END;
 $body$;
 CALL update_transactions(1);
+CALL update_transactions(3);
+CALL update_transactions(6);
+CALL update_transactions(5);
+CALL update_transactions(7);
+CALL update_transactions(10);
 ---------------------------------------------------------------------------------------------------------------------------------
 

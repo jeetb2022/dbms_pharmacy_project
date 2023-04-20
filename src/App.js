@@ -6,7 +6,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import RetailerInfoForm from './components/RetailerInfoForm';
 import Retailer from './components/Retailer';
-import retimg from './components/images/photor.png'
+import retimg from './components/images/photor.png';
+import whimg from './components/images/photow.png';
 import RetailerPage from './components/RetailerPage';
 import './components/dhanashri.css'
 const  App = ()=> {
@@ -29,6 +30,9 @@ const  App = ()=> {
      {!RetailerFormIsVisible &&<div>
       <div className='retimg'>
 <img src={retimg} alt='logo'></img>
+</div>
+<div className='whimg'>
+<img src={whimg} alt='logo'></img>
 </div>
       <div className='retailer' onClick={handleRetailer}> <Button onclick={handleRetailer} content = "Retailer"/></div>
      </div> }
