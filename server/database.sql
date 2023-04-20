@@ -34,6 +34,7 @@ INSERT INTO retailer_details(ret_fname, ret_lname, ret_email, ret_password, ret_
 VALUES('Het', 'Prajapati', 'het59@gmail.com', '54321987', '2299883344', 'Rajput Pharmacy', 'Bopal', 0, 0);
 INSERT INTO retailer_details(ret_fname, ret_lname, ret_email, ret_password, ret_phone_number, ret_shopname, ret_shop_address, ret_transactions, ret_number_of_transaction)
 VALUES('Dhanashri', 'Wala', 'dhanashri37@gmail.com', '81234765', '3349228144', 'Krishna Pharmacy', 'CTM', 0, 0);
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of WHOLESALER-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -92,10 +93,8 @@ create table wholesaler_inventory(
     PRIMARY KEY (inventory_id)
 );
 CREATE unique index idx_wid_medname on wholesaler_inventory(w_id, med_name);
-INSERT INTO wholesaler_inventory(w_id, w_shopname, med_category, med_name, med_price, med_quantity)
-VALUES(1, 'Ram Suppliers', 'Pain-Killer', 'DOLO-650', 200, 5000);
-INSERT INTO wholesaler_inventory(w_id, w_shopname, med_category, med_name, med_price, med_quantity)
-VALUES(4, 'Krishna Suppliers', 'Pain-Killer', 'COMBIFLAM', 300, 6000);
+CALL inventory_updates(2, 'Insulin', 'Rem-Desiveer', 500, 2500);
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 -- Table in which every medicine's data will be available.
@@ -145,6 +144,7 @@ create table retailer_cart(
     FOREIGN KEY (w_id) REFERENCES wholesaler_details(w_id),
     FOREIGN KEY (med_id) REFERENCES medicine_stock(med_id)
 );
+CALL cart_update_by_retailer(1, 2, 3000);
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -170,6 +170,7 @@ create table transactions(
     FOREIGN KEY (item_id) REFERENCES retailer_cart(item_id) 
 );
 
+CALL update_transactions(1);
 
 ---------------------------------------------------------------------------------------------------------------------------------
 -- We will be keeping 2 Functionalties i.e. Retailers_transaction_history and Wholesalers_transaction_history
