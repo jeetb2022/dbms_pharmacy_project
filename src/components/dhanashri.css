@@ -1,15 +1,37 @@
 .signup{
     position: relative;
     top: 30vh;
+    
 }
 .login{
-    position: absolute;
-    top: 30vh;
+    position: relative;
+    top: 50vh;
+    background-color: white;
+    width: fit-content;
+    padding: 0px;
+
 }
 .retailer{
 position: relative;
-top: 30vh;
+top: 31vh;
+left: 40vh;
 }
 .wholesaler{
+    position: relative;
+    top: 25vh;
+    right: 30vh;
 
+}
+.wholesalerp{
+    position: relative;
+    right: 30vh;
+    bottom: 20vh;
+    
+}
+
+.retailerp{
+    position: relative;
+    left: 40vh;
+    /* bottom: 10vh; */
+    top: 27vh;
 }
