@@ -5,6 +5,7 @@ import Button from "./Button";
 import Signup from "./Signup";
 import Login from "./Login";
 import ReatailerTable from "./RetailerTable";
+import './dhanashri.css';
 const RetailerPage =()=>{
     const [userStatus,setUserStatus]=useState(false);
     const [bp,setbp]=useState(false);
@@ -29,15 +30,15 @@ const RetailerPage =()=>{
     return(
         <div>
 
-        {(((!userStatus && !isSignup) || bp) && !isLogin)&&<div> 
-            <Button onclick={handleRetailerSignup} content = "SignUp" />
+        {(((!userStatus && !isSignup) || bp) && !isLogin)&&<div className="signup"> 
+           <Button onclick={handleRetailerSignup} content = "SignUp" />
             </div>
 
 }
-{(((!isLogin || !userLogin) && !userStatus )|| bp) ? <Button onclick={handleRetailerLogin} content = "Login" /> : <div>jeet </div>}
+{(((!isLogin || !userLogin) && !userStatus && !isSignup )|| bp) ? <div className="login"><Button onclick={handleRetailerLogin} content = "Login" /> </div>: <div></div>}
 {/* {(!isLogin && !isSignup ) && (!userStatus && (!userLogin && !bp))&& <Button onclick={handleRetailerLogin} content = "Login" />} */}
 {/* {!isLogin && bp && <div>Retailer account form the email-id already exists</div>} */}
-{isSignup && !isLogin && <Signup checkSignup={handleUserSignup} checkbp = {handlebp} /> }
+{(isSignup && !isLogin) && <Signup checkSignup={handleUserSignup} checkbp = {handlebp} /> }
 {isLogin && <Login /> }
 {userLogin && 
 <ReatailerTable />

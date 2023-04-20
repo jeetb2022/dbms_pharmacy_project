@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import RetailerInfoForm from './components/RetailerInfoForm';
 import Retailer from './components/Retailer';
 import RetailerPage from './components/RetailerPage';
+import './components/dhanashri.css'
 const  App = ()=> {
   const [formIsVisible, setFormVisibitlity] = useState(true);
   const [RetailerFormIsVisible, setRetailerFormIsVisible] = useState(false);
@@ -24,8 +25,8 @@ const  App = ()=> {
      <h3>By Jeet Bhadaniya, Het Prajapati, Kushal Patel, Dhanashri Wala</h3>
      <Button onclick={handleClick} content = "Add Medicines"></Button> */}
      {formIsVisible && <AddMedicineFrom onCancel={handleClick} />}
-     {!RetailerFormIsVisible &&<Button onclick={handleRetailer} content = "Retailer"/>}
-     {!RetailerFormIsVisible &&  <Button onclick={handleClick} content = "Wholesaler"/>}
+     {!RetailerFormIsVisible &&<div className='retailer'> <Button onclick={handleRetailer} content = "Retailer"/></div>}
+     {!RetailerFormIsVisible && <div className='wholesaler'> <Button onclick={handleClick} content = "Wholesaler"/></div>}
      {RetailerFormIsVisible && <RetailerPage />}
     </div>
   );
