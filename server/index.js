@@ -72,22 +72,6 @@ app.post('/checksignup',async(req,res)=>{
     }
 })
 
-// ALTER TABLE retailer_details DROP COLUMN r_email;
-// ALTER TABLE retailer_email_id DROP CONSTRAINT retailer_email_id_pkey;
-// CREATE OR REPLACE FUNCTION _retailer_email_exists()
-// RETURNS TRIGGER AS $$
-// BEGIN 
-//     IF EXISTS (SELECT 1 FROM retailer_email_id WHERE r_email = NEW.r_email) THEN
-//         RAISE EXCEPTION 'retailer account form the email-id already exists';
-//     END IF;
-//     RETURN NEW;
-// END;
-// $$ LANGUAGE plpgsql;
-
-// CREATE TRIGGER _enforce_r_email_check
-// BEFORE INSERT ON retailer_email_id
-//     FOR EACH ROW EXECUTE FUNCTION _retailer_email_exists();
-// ALTER TABLE retailer_details ADD COLUMN r_email VARCHAR;
 app.listen((5000),()=>{
 console.log("Conned to port 5000");
 });
