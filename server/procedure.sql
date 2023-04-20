@@ -16,7 +16,8 @@ BEGIN
 END;
 $body$;
 
-CALL retailer_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+CALL retailer_details_filling('Krisha', 'Shah', 'krisha.s@yahoo.com', 'password', '276891708', 'Wellcare', 'Paldi');
+CALL retailer_details_filling('Rina', 'mehta', 'rinamehta@gmail.com', 'password', '890789179', 'Florence', 'Iscon');
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -39,7 +40,8 @@ BEGIN
     VALUES (_w_fname, _w_lname, _w_email, _w_password, _w_phone_number, _w_shop_name, _w_shop_address);
 END;
 $body$;
-CALL wholesaler_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+CALL wholesaler_details_filling('devanshi', 'shah', 'devanshi@gmail.com', 'password', '1629038901', 'Jagnath', 'Lawgarden');
+CALL wholesaler_details_filling('adnan', 'kadiwala', 'adnan@gmail.com', 'password', '362801980', 'Vikas', 'Navrangpura');
 ---------------------------------------------------------------------------------------------------------------------------------
 
 -- Procedure to update wholesaler's inventory
@@ -71,11 +73,11 @@ CALL inventory_updates(2,'Fever', 'Advil',500,5500);
 CALL inventory_updates(3,'Headache','Disprin',250,4000);
 CALL inventory_updates(4, 'Cough and Cold', 'Crocin', 370, 2500);
 CALL inventory_updates(5, 'fatigue', 'vivarin', 400,1200);
-CALL inventory_updates(6,'vomit','enterogermina',375,6000);
-CALL inventory_updates(7,'diarrhea', 'vitalz',600,5500);
-CALL inventory_updates(8,'thyroid','levo-t', 475,4000);
-CALL inventory_updates(9,'Fever','Dolo-550', 700,1100);
-CALL inventory_updates(10, 'Headache', 'aspirin', 300,8050);
+CALL inventory_updates(1,'fatigue','enterogermina',375,6000);
+CALL inventory_updates(2,'diarrhea', 'vitalz',600,5500);
+CALL inventory_updates(3,'cough and cold','levo-t', 475,4000);
+CALL inventory_updates(4,'Fever','Dolo-550', 700,1100);
+CALL inventory_updates(5, 'Headache', 'aspirin', 300,8050);
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -103,12 +105,12 @@ END;
 $body$;
 CALL stock_update_by_wholesaler(2, 1);
 CALL stock_update_by_wholesaler(4,7);
-CALL stock_update_by_wholesaler(6,5);
-CALL stock_update_by_wholesaler(1,4);
-CALL stock_update_by_wholesaler(8,3);
 CALL stock_update_by_wholesaler(5,5);
-CALL stock_update_by_wholesaler(9,2);
-CALL stock_update_by_wholesaler(10,8);
+CALL stock_update_by_wholesaler(1,4);
+CALL stock_update_by_wholesaler(1,3);
+CALL stock_update_by_wholesaler(5,5);
+CALL stock_update_by_wholesaler(3,2);
+CALL stock_update_by_wholesaler(4,8);
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -183,9 +185,9 @@ $body$;
 CALL cart_update_by_retailer(1, 1, 2000);
 CALL cart_update_by_retailer(2,4,1768);
 CALL cart_update_by_retailer(3,6,1500);
-CALL cart_update_by_retailer(6,7,1200);
-CALL cart_update_by_retailer(7,5,600);
-CALL cart_update_by_retailer(8,2,100);
+CALL cart_update_by_retailer(4,7,1200);
+CALL cart_update_by_retailer(2,5,600);
+CALL cart_update_by_retailer(1,2,100);
 CALL cart_update_by_retailer(4,3,450);
 
 ---------------------------------------------------------------------------------------------------------------------------------
