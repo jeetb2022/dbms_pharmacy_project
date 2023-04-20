@@ -11,6 +11,7 @@ const Signup = (props) => {
     const passchangeHandler = (ele) => {
         setpass(ele.target.value);
     }
+    const [error,setErrorStatus]=useState(false);
     const submitHandler = async (event) => {
         event.preventDefault();
         try {
@@ -18,8 +19,10 @@ const Signup = (props) => {
           await  props.checkSignup();
         } catch (error) {
             console.log('errrr mf');
-            await props.checkbp();
-            await  props.checkSignup();
+            event.preventDefault();
+            setErrorStatus(true);
+            // await props.checkbp();
+            // await  props.checkSignup();
             // window.location.replace('http://localhost:3000/');
         }
     }
@@ -48,6 +51,7 @@ return (
                 <button style={{ margin: "8px" }} type='submit' >SignUp</button>                        <br></br>
             </form>
         </div>
+        {error && <div style={{padding:'10px'}}>Retailer account form the email-id already exists</div>}
     </div>
 );
 
