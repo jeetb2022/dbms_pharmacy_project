@@ -35,7 +35,7 @@ const RetailerPage =()=>{
             </div>
 
 }
-{(((!isLogin || !userLogin) && !userStatus && !isSignup )|| bp) ? <div className="login"><Button onclick={handleRetailerLogin} content = "Login" /> </div>: <div></div>}
+{(((!isLogin || !userLogin) && !userStatus && !isSignup )|| bp) ? <div className="login_d"><Button onclick={handleRetailerLogin} content = "Login" /> </div>: <div></div>}
 {/* {(!isLogin && !isSignup ) && (!userStatus && (!userLogin && !bp))&& <Button onclick={handleRetailerLogin} content = "Login" />} */}
 {/* {!isLogin && bp && <div>Retailer account form the email-id already exists</div>} */}
 {(isSignup && !isLogin) && <Signup checkSignup={handleUserSignup} checkbp = {handlebp} /> }

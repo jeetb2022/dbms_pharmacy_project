@@ -30,7 +30,7 @@ const  App = ()=> {
       <div className='retimg'>
 <img src={retimg} alt='logo'></img>
 </div>
-      <div className='retailer'> <Button onclick={handleRetailer} content = "Retailer"/></div>
+      <div className='retailer' onClick={handleRetailer}> <Button onclick={handleRetailer} content = "Retailer"/></div>
      </div> }
      {!RetailerFormIsVisible && <div className='wholesaler'> <Button onclick={handleClick} content = "Wholesaler"/></div>}
      {RetailerFormIsVisible && <RetailerPage />}
