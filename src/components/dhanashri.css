@@ -1,46 +1,70 @@
 .signup{
-    position: relative;
-    top: 30vh;
-    
-}
-.login_d{
-    position: relative;
+    position: absolute;
     top: 50vh;
+    left: 35%;
     background-color: white;
     width: fit-content;
     padding: 0px;
 
 }
+.login_d{
+    position: absolute;
+    top: 50vh;
+    width: 200px;
+    left: 65%;
+    background-color: white;
+    width: fit-content;
+    padding: 0px;
+}
 .retailer{
 position: relative;
-top: 31vh;
+top: 7vh;
 left: 40vh;
 }
 .wholesaler{
     position: relative;
-    top: 25vh;
+    top: 1vh;
     right: 30vh;
 
 }
-.wholesalerp{
+.whimg{
     position: relative;
     right: 30vh;
-    bottom: 20vh;
+    bottom: 7vh;
     
 }
 
-.retailerp{
+.retimg{
     position: relative;
     left: 40vh;
     /* bottom: 10vh; */
-    top: 27vh;
+    top: 30vh;
 }
 
+.signup{
 
+}
 
-.retailerp{
+.loginimg img{
+    position: absolute;
+    top: 34vh;
+    left: 65%;
+    width: fit-content;
+    padding: 0px;
+    height:100px
+
+}
+.signupimg img{
+    position: absolute;
+    top: 34vh;
+    left: 35%;
+    width: fit-content;
+    padding: 0px;
+    height:100px
+
+}
+.logimg{
     position: relative;
-    left: 40vh;
-    /* bottom: 10vh; */
-    top: 27vh;
+    height: 20px;
+
 }

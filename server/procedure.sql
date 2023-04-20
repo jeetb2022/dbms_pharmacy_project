@@ -15,7 +15,10 @@ BEGIN
     VALUES (_ret_fname, _ret_lname, _ret_email, _ret_password, _ret_phone_number, _ret_shop_name, _ret_shop_address);
 END;
 $body$;
--- CALL retailer_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+
+CALL retailer_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -36,7 +39,7 @@ BEGIN
     VALUES (_w_fname, _w_lname, _w_email, _w_password, _w_phone_number, _w_shop_name, _w_shop_address);
 END;
 $body$;
--- CALL wholesaler_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
+CALL wholesaler_details_filling('Kushal', 'Patel', 'kushal.p@ahduni.edu.in', 'password', '1234554321', 'Natraj', 'Maninagar');
 ---------------------------------------------------------------------------------------------------------------------------------
 
 -- Procedure to update wholesaler's inventory
@@ -63,12 +66,22 @@ BEGIN
     CALL stock_update_by_wholesaler(_w_id, _inventory_id);
 END;
 $body$;
--- CALL inventory_updates(1, 'Pain-killer', 'Dolo-650', 200, 5000);
+CALL inventory_updates(1, 'Pain-killer', 'Dolo-650', 200, 5000);
+CALL inventory_updates(2,'Fever', 'Advil',500,5500);
+CALL inventory_updates(3,'Headache','Disprin',250,4000);
+CALL inventory_updates(4, 'Cough and Cold', 'Crocin', 370, 2500);
+CALL inventory_updates(5, 'fatigue', 'vivarin', 400,1200);
+CALL inventory_updates(6,'vomit','enterogermina',375,6000);
+CALL inventory_updates(7,'diarrhea', 'vitalz',600,5500);
+CALL inventory_updates(8,'thyroid','levo-t', 475,4000);
+CALL inventory_updates(9,'Fever','Dolo-550', 700,1100);
+CALL inventory_updates(10, 'Headache', 'aspirin', 300,8050);
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
 -- PROCEDURE to update medicine stock from wholesaler side
-CREATE PROCEDURE stock_update_by_wholesaler(IN _w_id INT, IN _inventory_id INT)
+CREATE OR REPLACE PROCEDURE stock_update_by_wholesaler(IN _w_id INT, IN _inventory_id INT)
 LANGUAGE 'plpgsql'
 AS $body$
 DECLARE 
@@ -88,6 +101,14 @@ BEGIN
     ON CONFLICT (w_id, inventory_id) DO UPDATE SET med_price = _med_price, med_quantity = _med_quantity;
 END;
 $body$;
+CALL stock_update_by_wholesaler(2, 1);
+CALL stock_update_by_wholesaler(4,7);
+CALL stock_update_by_wholesaler(6,5);
+CALL stock_update_by_wholesaler(1,4);
+CALL stock_update_by_wholesaler(8,3);
+CALL stock_update_by_wholesaler(5,5);
+CALL stock_update_by_wholesaler(9,2);
+CALL stock_update_by_wholesaler(10,8);
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -105,6 +126,7 @@ BEGIN
     WHERE med_id = _med_id;
 END;
 $body$;
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -158,18 +180,25 @@ BEGIN
     CALL stock_update_by_retailer(_item_id, _ret_med_quantity);
 END;
 $body$;
--- CALL cart_update_by_retailer(1, 1, 2000);
+CALL cart_update_by_retailer(1, 1, 2000);
+CALL cart_update_by_retailer(2,4,1768);
+CALL cart_update_by_retailer(3,6,1500);
+CALL cart_update_by_retailer(6,7,1200);
+CALL cart_update_by_retailer(7,5,600);
+CALL cart_update_by_retailer(8,2,100);
+CALL cart_update_by_retailer(4,3,450);
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
 
 -- PROCEDURE to fill the Transactions table
-CREATE PROCEDURE update_transactions(IN _item_id INT)
+CREATE OR REPLACE PROCEDURE update_transactions(IN _item_id INT)
 LANGUAGE 'plpgsql'
 AS $body$
 DECLARE 
-    _ret_id VARCHAR;
-    _w_id VARCHAR;
+    _ret_id INT;
+    _w_id INT;
     _ret_shopname VARCHAR;
     _w_shopname VARCHAR;
     _med_category VARCHAR;
@@ -184,8 +213,15 @@ BEGIN
     SELECT ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_id, ret_med_quantity, net_price
     INTO _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price
     FROM retailer_cart WHERE item_id = _item_id;
-
+    INSERT INTO transactions(item_id, ret_id, ret_shopname, w_id, w_shopname, med_category, med_name, med_id, ret_med_quantity, net_price)
+    VALUES(_item_id, _ret_id, _ret_shopname, _w_id, _w_shopname, _med_category, _med_name, _med_price, _ret_med_quantity, _net_price);
 END;
 $body$;
+CALL update_transactions(1);
+CALL update_transactions(3);
+CALL update_transactions(6);
+CALL update_transactions(5);
+CALL update_transactions(7);
+CALL update_transactions(10);
 ---------------------------------------------------------------------------------------------------------------------------------
 
