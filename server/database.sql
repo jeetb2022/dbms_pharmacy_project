@@ -17,13 +17,14 @@ CREATE TABLE retailer_details (
 	ret_shopname VARCHAR(50) NOT NULL,
 	ret_shop_address VARCHAR(200) NOT NULL,
     ret_transactions INT,         -- After every transaction it will be updated (FUNCTION)
-    ret_number_of_transaction INT
+    ret_number_of_transaction INT,
+    FOREIGN KEY (ret_email) REFERENCES FROM retailer_email_id(ret_email)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------TABLE TO STORE EMAIL_ID and PASSWORD of WHOLESALER-----------------------------------------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE wholesaler_email_id(
+CREATE OR REPLACE TABLE wholesaler_email_id(
     w_email VARCHAR NOT NULL,
     w_password VARCHAR NOT NULL
 );
@@ -31,7 +32,7 @@ CREATE TABLE wholesaler_email_id(
 
 
 -------------------------------------------Table storing details related Wholesaler-------------------------------------------
-create table wholesaler_details (
+create OR REPLACE table wholesaler_details (
 	w_id BIGSERIAL NOT NULL PRIMARY KEY,
 	w_fname VARCHAR(50) NOT NULL,
 	w_lname VARCHAR(50) NOT NULL,
@@ -41,7 +42,8 @@ create table wholesaler_details (
 	w_shopname VARCHAR(50) NOT NULL,
 	w_shop_address VARCHAR(50) NOT NULL,
     total_transactions INT,      -- After every transaction it will be updated (FUNCTION)
-    w_number_of_transactions INT
+    w_number_of_transactions INT,
+    FOREIGN KEY (w_email) REFERENCES FROM wholesaler_email_id(w_email)
 );
 
 ---------------------------------------------------------------------------------------------------------------------------------
