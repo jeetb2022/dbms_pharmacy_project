@@ -1,7 +1,7 @@
 -- TRIGGERS THAT WILL FIRE AT FRONTEND
 ------------------------------------------TRIGGER DURING RETAILER SIGN UP WITH EXISTING ACCOUNT---------------------------------------------------
 
-CREATE FUNCTION retailer_email_exists()
+CREATE OR REPLACE FUNCTION retailer_email_exists()
 RETURNS TRIGGER AS $$
 BEGIN 
     IF NEW.ret_email = OLD.ret_email THEN
@@ -14,6 +14,21 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER enforce_ret_email_check
 BEFORE INSERT ON retailer_email_id
     FOR EACH ROW EXECUTE FUNCTION retailer_email_exists();
+
+
+-- CREATE OR REPLACE FUNCTION retailer_email_exists()
+-- RETURNS TRIGGER AS $$
+-- BEGIN 
+--     IF EXISTS (SELECT 1 FROM retailer_email_id WHERE ret_email = NEW.ret_email) THEN
+--         RAISE EXCEPTION 'retailer account form the email-id already exists';
+--     END IF;
+--     RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+
+
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------TRIGGER DURING WHOLESALER SIGN UP WITH EXISTING ACCOUNT---------------------------------------------------

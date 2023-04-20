@@ -2,11 +2,18 @@ import Button from './Button';
 import './forms.css';
 import axios from 'axios';
 import { useState } from 'react';
-const RetailerInfoForm = () => {
+const RetailerInfoForm = (props) => {
     
-    const submitHandler = (event) => {
+    const submitHandler = async(event) => {
         event.preventDefault();
-        axios.post('http://localhost:5000/retailInfo',[ fname, lname,shopname,shopaddress, phone]);
+       await axios.post('http://localhost:5000/retailInfo',[ fname, lname,shopname,shopaddress, phone]);
+        setFname('');
+        setLname('');
+        setPhone('');
+        setShopaddress('');
+        setShopname('');
+        props.isLogined();
+
     }
     const [fname,setFname]= useState('');
     const fnameChangeHandler = (ele) => {
@@ -29,27 +36,26 @@ const RetailerInfoForm = () => {
       setPhone(ele.target.value);
     };
     return (
-
         <div className='body'>
             <div class="login">
                 <h2>Retailers Information</h2>
-                <form id="login"  method="post" onSubmit={submitHandler} >
+                <form id="login"  method="post" onSubmit={submitHandler}>
                     <label for="fname">First Name:</label><br></br>
-                    <input type="text" id="fname" name="firstname" placeholder="Your name" onChange={fnameChangeHandler} />
+                    <input type="text" id="fname" name="firstname" value={fname} placeholder="Your name" onChange={fnameChangeHandler} />
                     <br></br>
                     <label for="fname">Last Name:</label><br></br>
-                    <input type="text" id="fname" name="lastname" placeholder="Your name" onChange={lnameChangeHandler} />
+                    <input type="text" id="fname" name="lastname" value={lname} placeholder="Your name" onChange={lnameChangeHandler} />
                     <br></br>
                     <label for="pnum">Phone Number:</label><br></br>
-                    <input type="text" id="pnum" name="pnum" placeholder="number" onChange={phoneChangeHandler} />
+                    <input type="text" id="pnum" name="pnum" value={phone} placeholder="number" onChange={phoneChangeHandler} />
                     <br></br>
                     <label for="adr"><i class="add"></i> Shop Name:</label><br></br>
-                    <input type="text" id="adr" name="name" placeholder="name" onChange={shopnameChangeHandler} />
+                    <input type="text" id="adr" name="name" value={shopname} placeholder="name" onChange={shopnameChangeHandler} />
                     <br></br>
                     <label for="adr"><i class="add"></i> Shop Address:</label><br></br>
-                    <input type="text" id="adr" name="address" placeholder="address"onChange={shopaddressChangeHandler} />
+                    <input type="text" id="adr" name="address" value={shopaddress} placeholder="address"onChange={shopaddressChangeHandler} />
                     <br></br>
-                    <button style={{ margin: "8px" }} type='submit' onSubmit={submitHandler}>ADD</button>
+                    <button style={{ margin: "8px" }} type='submit'>ADD</button>
                 </form>
             </div>
         </div>
