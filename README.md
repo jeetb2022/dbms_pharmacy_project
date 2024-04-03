@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# DBMS Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a database management system (DBMS) for managing medicine stocks. It's built with React for the frontend and Express.js for the backend, and uses PostgreSQL for the database.
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+The project is divided into three main directories:
 
-### `npm start`
+- `public/`: Contains static files like `index.html`, `manifest.json`, and `robots.txt`.
+- `server/`: Contains the server-side code, including the database setup and API endpoints.
+- `src/`: Contains the client-side code, including React components and CSS files.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Database
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The database is set up in PostgreSQL. The schema and procedures are defined in the `server/` directory, in `database.sql`, `functions.sql`, `procedure.sql`, and `triggers.sql`.
 
-### `npm test`
+The database connection is set up in `server/db.js`, using the `pg` library.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the Project
 
-### `npm run build`
+To run the project, you need to start both the server and the client.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Starting the Server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Navigate to the `server/` directory.
+2. Run `npm install` to install the necessary dependencies.
+3. Run `npm start` to start the server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Starting the Client
 
-### `npm run eject`
+1. Navigate to the root directory.
+2. Run `npm install` to install the necessary dependencies.
+3. Run `npm start` to start the client. The client will be available at [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Database Schema
+<img src="Database_Schema.png">
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ER Diagram
+<img src="ER-Diagram.jpg">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you'd like to contribute to this project, please fork the repository and make changes as you'd like. Pull requests are warmly welcome.
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open-sourced software licensed under the MIT license.
