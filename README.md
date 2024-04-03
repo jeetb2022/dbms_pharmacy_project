@@ -15,6 +15,11 @@ The project is divided into three main directories:
 The database is set up in PostgreSQL. The schema and procedures are defined in the `server/` directory, in `database.sql`, `functions.sql`, `procedure.sql`, and `triggers.sql`.
 
 The database connection is set up in `server/db.js`, using the `pg` library.
+## Database Schema
+<img src="Database_Schema.png">
+
+## ER Diagram
+<img src="ER-Diagram.jpg">
 
 ## Running the Project
 
@@ -31,12 +36,6 @@ To run the project, you need to start both the server and the client.
 1. Navigate to the root directory.
 2. Run `npm install` to install the necessary dependencies.
 3. Run `npm start` to start the client. The client will be available at [http://localhost:3000](http://localhost:3000).
-
-## Database Schema
-<img src="Database_Schema.png">
-
-## ER Diagram
-<img src="ER-Diagram.jpg">
 
 ## Contributing
 
